@@ -19,8 +19,12 @@ class AdminController extends Controller
      */
     public function index()
     {
+        // pagina de administracion de usuarios
+
+        //obtener los roles del usuario
         $users = User::with('roles')->get();
         $u = User::all();
+        //enviar los datos del usuario a la vista vAdmin
         return Inertia::render('Admin/vAdmin',compact('users','u'));
     }
 
@@ -31,6 +35,7 @@ class AdminController extends Controller
      */
     public function create()
     {
+        //no es necesario crear usuarios desde el administrador
         return Inertia::render('Admin/CreateUser');
     }
 
@@ -42,6 +47,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        // no es necesario crear usuarios
         $user = $request->all();
         $use = User::create([
             'name'=>$user['name'],
@@ -61,6 +67,8 @@ class AdminController extends Controller
      */
     public function show( $user)
     {
+        //funcion para visualizar los datos del usuario
+        //nnota: necesario sequir desarrollando 
         $us = User::find($user);
         return Inertia::render('Admin/showUser',compact('us'));
     }
@@ -73,8 +81,11 @@ class AdminController extends Controller
      */
     public function edit( $user)
     {
+        //controlador para direccionar a la Vista editarUser
+        //nnota: necesario sequir desarrollando la edicion del usuario
         //$us = $use::with('roles')->get();
         $us = User::find($user);
+        //se manda los datos del usuario a editar a la vista
         return Inertia::render('Admin/editUser',compact('us'));
     }
 
@@ -87,7 +98,7 @@ class AdminController extends Controller
      */
     public function update(RequestUser $request,  $user)
     {
-
+        //funcion para actualizar los datos del usuario
         $rq = $request->all();
         User::find($user)->update([
             'name'=>$rq['name'],
@@ -107,6 +118,7 @@ class AdminController extends Controller
      */
     public function destroy( $user)
     {
+        //funcion para eliminar un usuario desde el administrador
         $us = User::find($user);
         $us->delete();
         return Redirect::route('admin.index');
