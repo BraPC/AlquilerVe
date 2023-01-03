@@ -23,7 +23,7 @@
                                     <thead>
                                         <tr>
                                             <th class="p-3">#</th>
-                                            <th class="p-3">Nombre</th>
+                                            <th class="p-3">Nombrec</th>
                                             <th class="p-3">Apellido</th>
                                             <th class="p-3">Cedula</th>
                                             <th class="p-3">Rol</th>
